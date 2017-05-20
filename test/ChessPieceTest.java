@@ -41,8 +41,8 @@ public class ChessPieceTest {
     q1 = new Queen(5, 6, Color.WHITE);
     q2 = new Queen(6, 4, Color.BLACK);
     q3 = new Queen(7, 0, Color.WHITE);
-    p1 = new Pawn(0, 0, Color.BLACK);
-    p2 = new Pawn(7, 7, Color.WHITE);
+    p1 = new Pawn(0, 0, Color.WHITE);
+    p2 = new Pawn(7, 7, Color.BLACK);
     p3 = new Pawn(3, 4, Color.BLACK);
     r1 = new Rook(0, 0, Color.BLACK);
     r2 = new Rook(7, 7, Color.WHITE);
@@ -437,7 +437,7 @@ public class ChessPieceTest {
     // Pawn-1 2 3 eligible moves
     assertTrue(p1.canMove(1, 0));
     assertTrue(p2.canMove(6, 7));
-    assertTrue(p3.canMove(4, 4));
+    assertTrue(p3.canMove(2, 4));
 
     // Pawn-1 non-eligible moves
     assertFalse(p1.canMove(1, 1));
@@ -481,16 +481,16 @@ public class ChessPieceTest {
   @Test
   public void testPawnCanKill() {
     // Pawn can kill any ChessPiece on one place forward diagonally
-    assertTrue(p1.canKill(new Bishop(1, 1, Color.WHITE)));
-    assertTrue(p3.canKill(new Queen(4, 5, Color.WHITE)));
-    assertTrue(p3.canKill(new Bishop(4, 3, Color.WHITE)));
-    assertTrue(p2.canKill(new Bishop(6, 6, Color.BLACK)));
+    assertTrue(p1.canKill(new Bishop(1, 1, Color.BLACK)));
+    assertTrue(p3.canKill(new Queen(2, 5, Color.WHITE)));
+    assertTrue(p3.canKill(new Bishop(2, 3, Color.WHITE)));
+    assertTrue(p2.canKill(new Bishop(6, 6, Color.WHITE)));
+    assertTrue(p1.canKill(new Bishop(0, 0, Color.WHITE)));
     // Pawn can't kill any ChessPiece outside diagonal or same color
     assertFalse(p2.canKill(new Bishop(4, 3, Color.WHITE)));
-    assertFalse(p3.canKill(new Knight(2, 3, Color.WHITE)));
+    assertFalse(p3.canKill(new Knight(4, 5, Color.WHITE)));
     assertFalse(p2.canKill(new Queen(0, 2, Color.BLACK)));
-    assertFalse(p1.canKill(new Bishop(0, 0, Color.WHITE)));
-    assertFalse(p3.canKill(new Queen(2, 5, Color.WHITE)));
+    assertFalse(p3.canKill(new Queen(4, 3, Color.WHITE)));
   }
 
   // Test cases to check whether the canKill method for Pawn throws exceptions for
