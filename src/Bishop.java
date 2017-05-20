@@ -25,10 +25,7 @@ public class Bishop extends AbstractChessPiece {
    */
   public boolean canMove(int row, int col) throws IllegalArgumentException {
     this.checkRowCol(row, col);
-    if (this.row == row && this.column == col) {
-      return false;
-    }
-    return this.onDiagonalLine(row, col);
+    return !(this.row == row && this.column == col) && this.onDiagonalLine(row, col);
   }
 
   /**

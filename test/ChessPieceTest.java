@@ -65,7 +65,7 @@ public class ChessPieceTest {
   // Illegal row number of Bishop
   @Test(expected = IllegalArgumentException.class)
   public void testConstructor1() {
-    ChessPiece bishop = new Bishop(-1, 3, Color.WHITE);
+    new Bishop(-1, 3, Color.WHITE);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -76,56 +76,56 @@ public class ChessPieceTest {
   // Illegal column number of Bishop
   @Test(expected = IllegalArgumentException.class)
   public void testConstructor3() {
-    ChessPiece bishop = new Bishop(3, -1, Color.BLACK);
+    new Bishop(3, -1, Color.BLACK);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testConstructor4() {
-    ChessPiece bishop = new Bishop(5, 10, Color.BLACK);
+    new Bishop(5, 10, Color.BLACK);
   }
 
   // Illegal row number of Knight
   @Test(expected = IllegalArgumentException.class)
   public void testConstructor5() {
-    ChessPiece knight = new Knight(-1, 3, Color.WHITE);
+    new Knight(-1, 3, Color.WHITE);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testConstructor6() {
-    ChessPiece knight = new Knight(8, 3, Color.WHITE);
+    new Knight(8, 3, Color.WHITE);
   }
 
   // Illegal column number of Knight
   @Test(expected = IllegalArgumentException.class)
   public void testConstructor7() {
-    ChessPiece knight = new Knight(3, -1, Color.BLACK);
+    new Knight(3, -1, Color.BLACK);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testConstructor8() {
-    ChessPiece knight = new Knight(5, 10, Color.BLACK);
+    new Knight(5, 10, Color.BLACK);
   }
 
   // Illegal row number of Queen
   @Test(expected = IllegalArgumentException.class)
   public void testConstructor9() {
-    ChessPiece queen = new Queen(-1, 3, Color.WHITE);
+    new Queen(-1, 3, Color.WHITE);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testConstructor10() {
-    ChessPiece queen = new Queen(8, 3, Color.WHITE);
+    new Queen(8, 3, Color.WHITE);
   }
 
   // Illegal column number of Queen
   @Test(expected = IllegalArgumentException.class)
   public void testConstructor11() {
-    ChessPiece queen = new Queen(3, -1, Color.BLACK);
+    new Queen(3, -1, Color.BLACK);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testConstructor12() {
-    ChessPiece queen = new Queen(5, 10, Color.BLACK);
+    new Queen(5, 10, Color.BLACK);
   }
 
   // Test cases to check whether the getRow method works properly
@@ -172,7 +172,7 @@ public class ChessPieceTest {
     assertTrue(b1.canMove(0, 4));
     assertTrue(b1.canMove(0, 6));
     assertTrue(b1.canMove(3, 3));
-    // Bishop-1 noneligible moves
+    // Bishop-1 non-eligible moves
     assertFalse(b1.canMove(1, 0));
     assertFalse(b1.canMove(1, 7));
     assertFalse(b1.canMove(3, 6));
@@ -182,7 +182,7 @@ public class ChessPieceTest {
     assertTrue(b2.canMove(0, 6));
     assertTrue(b2.canMove(0, 2));
     assertTrue(b2.canMove(3, 5));
-    // Bishop-2 noneligible moves
+    // Bishop-2 non-eligible moves
     assertFalse(b2.canMove(1, 2));
     assertFalse(b2.canMove(3, 7));
     assertFalse(b2.canMove(1, 6));
@@ -439,15 +439,15 @@ public class ChessPieceTest {
     assertTrue(p2.canMove(6, 7));
     assertTrue(p3.canMove(4, 4));
 
-    // Pawn-1 noneligible moves
+    // Pawn-1 non-eligible moves
     assertFalse(p1.canMove(1, 1));
     assertFalse(p1.canMove(0, 2));
 
-    // Pawn-2 noneligible moves
+    // Pawn-2 non-eligible moves
     assertFalse(p2.canMove(6, 6));
     assertFalse(p2.canMove(5, 7));
 
-    // Pawn-3 noneligible moves
+    // Pawn-3 non-eligible moves
     assertFalse(p3.canMove(1, 2));
     assertFalse(p3.canMove(3, 7));
     assertFalse(p3.canMove(5, 4));
@@ -526,15 +526,15 @@ public class ChessPieceTest {
     assertTrue(r3.canMove(5, 4));
     assertTrue(r3.canMove(3, 6));
 
-    // Rook-1 noneligible moves
+    // Rook-1 non-eligible moves
     assertFalse(r1.canMove(1, 1));
     assertFalse(r1.canMove(2, 2));
 
-    // Rook-2 noneligible moves
+    // Rook-2 non-eligible moves
     assertFalse(r2.canMove(6, 6));
     assertFalse(r2.canMove(5, 3));
 
-    // Rook-3 noneligible moves
+    // Rook-3 non-eligible moves
     assertFalse(r3.canMove(1, 2));
     assertFalse(r3.canMove(5, 3));
 

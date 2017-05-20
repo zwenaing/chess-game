@@ -3,8 +3,8 @@
  */
 public abstract class AbstractChessPiece implements ChessPiece {
 
-  protected final int MAX = 7; // the maximum row and column number
-  protected final int MIN = 0; // the minimum row and column number
+  private final int MAX = 7; // the maximum row and column number
+  private final int MIN = 0; // the minimum row and column number
 
   protected int row;
   protected int column;
@@ -78,10 +78,8 @@ public abstract class AbstractChessPiece implements ChessPiece {
    * @throws IllegalArgumentException if the given ChessPiece is in the same position as this piece
    */
   public boolean canKill(ChessPiece piece) throws IllegalArgumentException {
-    if ((this.row == piece.getRow()) && (this.column == piece.getCol())) {
-      return false;
-    }
-    return this.canMove(piece.getRow(), piece.getCol())
+    return !((this.row == piece.getRow()) && (this.column == piece.getCol()))
+        && this.canMove(piece.getRow(), piece.getCol())
         && (this.color != piece.getColor());
   }
 

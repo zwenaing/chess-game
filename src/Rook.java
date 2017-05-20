@@ -2,11 +2,13 @@
  * This class represents a Rook class and extends the AbstractChessPiece abstract class.
  */
 public class Rook extends AbstractChessPiece {
+
   /**
    * Constructs a Rook given row, column and color.
-   * @param row    the row number
+   *
+   * @param row the row number
    * @param column the column number
-   * @param color  the color of this piece
+   * @param color the color of this piece
    * @throws IllegalArgumentException if the given row and column number are out of range
    */
   public Rook(int row, int column, Color color) {
@@ -24,10 +26,8 @@ public class Rook extends AbstractChessPiece {
    */
   public boolean canMove(int row, int col) throws IllegalArgumentException {
     this.checkRowCol(row, col);
-    if ((this.row == row) && (this.column == col)) {
-      return false;
-    }
-    return this.onStraightLine(row, col);
+
+    return !((this.row == row) && (this.column == col)) && this.onStraightLine(row, col);
   }
 
   /**
