@@ -3,8 +3,8 @@
  */
 public abstract class AbstractChessPiece implements ChessPiece {
 
-  private final int MAX = 7; // the maximum row and column number
-  private final int MIN = 0; // the minimum row and column number
+  protected final int MAX = 7; // the maximum row and column number
+  protected final int MIN = 0; // the minimum row and column number
 
   protected int row;
   protected int column;
@@ -20,6 +20,7 @@ public abstract class AbstractChessPiece implements ChessPiece {
    */
   protected AbstractChessPiece(int row, int column, Color color) throws IllegalArgumentException {
     this.checkRowCol(row, column);
+
     this.row = row;
     this.column = column;
     this.color = color;

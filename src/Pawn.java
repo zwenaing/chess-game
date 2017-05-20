@@ -6,9 +6,9 @@ public class Pawn extends AbstractChessPiece {
   /**
    * Constructs a Pawn given row, column and color.
    *
-   * @param row    the row number
+   * @param row the row number
    * @param column the column number
-   * @param color  the color of this piece
+   * @param color the color of this piece
    * @throws IllegalArgumentException if the given row and column number are out of range
    */
   public Pawn(int row, int column, Color color) {
@@ -27,9 +27,15 @@ public class Pawn extends AbstractChessPiece {
   public boolean canMove(int row, int col) throws IllegalArgumentException {
     this.checkRowCol(row, col);
 
-    return ((this.row == row && this.column == col)
-        || ((this.color == Color.BLACK) && (this.row - row == 1) && (this.column == col))
-        || ((this.color == Color.WHITE) && (row - this.row == 1) && (this.column == col)));
+    if (this.row == row && this.column == col) {
+      return true;
+    } else if (this.color == Color.BLACK) {
+      return (this.column == col) && (this.row - row == 1);
+    } else if (this.color == Color.WHITE) {
+      return (this.column == col) && (row - this.row == 1);
+    } else {
+      return false;
+    }
   }
 
   /**
@@ -41,16 +47,19 @@ public class Pawn extends AbstractChessPiece {
    */
   public boolean canKill(ChessPiece piece) throws IllegalArgumentException {
     this.checkRowCol(piece.getRow(), piece.getCol());
+
     if (this.color == Color.WHITE) {
       return ((this.row == piece.getRow() && this.column == piece.getCol())
           || ((piece.getColor() == Color.BLACK)
           && (piece.getRow() - this.row == 1)
           && (Math.abs(this.column - piece.getCol()) == 1)));
-    } else {
+    } else if (this.color == Color.BLACK) {
       return ((this.row == piece.getRow() && this.column == piece.getCol())
           || ((piece.getColor() == Color.WHITE)
           && (this.row - piece.getRow() == 1)
           && (Math.abs(this.column - piece.getCol()) == 1)));
+    } else {
+      return false;
     }
   }
 
