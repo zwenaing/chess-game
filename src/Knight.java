@@ -25,9 +25,10 @@ public class Knight extends AbstractChessPiece {
    */
   public boolean canMove(int row, int col) throws IllegalArgumentException {
     this.checkRowCol(row, col);
-    return !(this.row == row && this.column == col)
-        || (((Math.abs(this.row - row) == 2) && (Math.abs(this.column - col) == 1))
-        || ((Math.abs(this.row - row) == 1) && (Math.abs(this.column - col) == 2)));
+
+    return (this.row == row && this.column == col)
+        || (((Math.abs(this.row - row)) == 2) && ((Math.abs(this.column - col)) == 1))
+        || (((Math.abs(this.row - row)) == 1) && ((Math.abs(this.column - col)) == 2));
   }
 
   /**

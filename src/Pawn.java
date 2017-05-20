@@ -6,9 +6,9 @@ public class Pawn extends AbstractChessPiece {
   /**
    * Constructs a Pawn given row, column and color.
    *
-   * @param row the row number
+   * @param row    the row number
    * @param column the column number
-   * @param color the color of this piece
+   * @param color  the color of this piece
    * @throws IllegalArgumentException if the given row and column number are out of range
    */
   public Pawn(int row, int column, Color color) {
@@ -27,8 +27,8 @@ public class Pawn extends AbstractChessPiece {
   public boolean canMove(int row, int col) throws IllegalArgumentException {
     this.checkRowCol(row, col);
 
-    return !(this.row == row && this.column == col)
-        && (((this.color == Color.BLACK) && (row - this.row == 1) && (this.column == col))
+    return (this.row == row && this.column == col)
+        || (((this.color == Color.BLACK) && (row - this.row == 1) && (this.column == col))
         || ((this.color == Color.WHITE) && (this.row - row == 1) && (this.column == col)));
   }
 
@@ -41,13 +41,15 @@ public class Pawn extends AbstractChessPiece {
    */
   public boolean canKill(ChessPiece piece) throws IllegalArgumentException {
     this.checkRowCol(piece.getRow(), piece.getCol());
-    return !(this.row == piece.getRow() && this.column == piece.getCol())
-        && (((this.color != piece.getColor())
-        && (this.row - piece.getRow() == 1)
-        && (Math.abs(this.column - piece.getCol()) == 1))
-        || ((this.color != piece.getColor())
-        && (piece.getRow() - this.row == 1)
-        && (Math.abs(this.column - piece.getCol()) == 1)));
+    if (this.color == Color.WHITE) {
+      return ((piece.getColor() == Color.BLACK)
+          && (this.row - piece.getRow() == 1)
+          && (Math.abs(this.column - piece.getCol()) == 1));
+    } else {
+      return ((piece.getColor() == Color.WHITE)
+          && (piece.getRow() - this.row == 1)
+          && (Math.abs(this.column - piece.getCol()) == 1));
+    }
   }
 
   /**

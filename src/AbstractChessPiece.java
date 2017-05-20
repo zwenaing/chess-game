@@ -75,9 +75,8 @@ public abstract class AbstractChessPiece implements ChessPiece {
    *
    * @param piece the given ChessPiece
    * @return true if this piece can kill the given ChessPiece, otherwise false
-   * @throws IllegalArgumentException if the given ChessPiece is in the same position as this piece
    */
-  public boolean canKill(ChessPiece piece) throws IllegalArgumentException {
+  public boolean canKill(ChessPiece piece) {
     return this.canMove(piece.getRow(), piece.getCol())
         && (this.color != piece.getColor());
   }
