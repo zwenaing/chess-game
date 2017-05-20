@@ -25,8 +25,8 @@ public class Queen extends AbstractChessPiece {
    */
   public boolean canMove(int row, int col) throws IllegalArgumentException {
     this.checkRowCol(row, col);
-    return !((this.row == row) && (this.column == col))
-        && (this.onDiagonalLine(row, col) || this.onStraightLine(row, col));
+    return ((this.row == row) && (this.column == col))
+        || (this.onDiagonalLine(row, col) || this.onStraightLine(row, col));
   }
 
   /**
