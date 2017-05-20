@@ -59,13 +59,13 @@ public abstract class AbstractChessPiece implements ChessPiece {
    * @throws IllegalArgumentException if the given row and column number are out of range
    */
   protected void checkRowCol(int row, int column) throws IllegalArgumentException {
-    final int max = 7; // the maximum row and column number
-    final int min = 0; // the minimum row and column number
+    final int MAX = 7; // the maximum row and column number
+    final int MIN = 0; // the minimum row and column number
 
-    if (row < min || row > max) {
+    if (row < MIN || row > MAX) {
       throw new IllegalArgumentException("Row number must be between 0 and 7");
     }
-    if (column < min || column > max) {
+    if (column < MIN || column > MAX) {
       throw new IllegalArgumentException("Column number must be between 0 and 7");
     }
   }
