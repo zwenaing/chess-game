@@ -28,8 +28,8 @@ public class Pawn extends AbstractChessPiece {
     this.checkRowCol(row, col);
 
     return (this.row == row && this.column == col)
-        || (((this.color == Color.BLACK) && (row - this.row == 1) && (this.column == col))
-        || ((this.color == Color.WHITE) && (this.row - row == 1) && (this.column == col)));
+        || (((this.color == Color.BLACK) && (this.row - row == 1) && (this.column == col))
+        || ((this.color == Color.WHITE) && (row - this.row == 1) && (this.column == col)));
   }
 
   /**
