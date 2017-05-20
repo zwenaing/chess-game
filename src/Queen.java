@@ -9,8 +9,9 @@ public class Queen extends AbstractChessPiece {
    * @param row the row number
    * @param column the column number
    * @param color the color of this piece
+   * @throws IllegalArgumentException if the given row and column number are out of range
    */
-  public Queen(int row, int column, Color color) {
+  public Queen(int row, int column, Color color) throws IllegalArgumentException {
     super(row, column, color);
   }
 
@@ -25,7 +26,7 @@ public class Queen extends AbstractChessPiece {
    */
   public boolean canMove(int row, int col) throws IllegalArgumentException {
     this.checkRowCol(row, col);
-    return (this.onDiagonalLine(row, col) || this.onStraightLine(row, col));
+    return this.onDiagonalLine(row, col) || this.onStraightLine(row, col);
   }
 
   /**

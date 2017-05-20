@@ -40,8 +40,7 @@ public interface ChessPiece {
    *
    * @param piece the given ChessPiece
    * @return true if this piece can kill the given ChessPiece, otherwise false
-   * @throws IllegalArgumentException if the given ChessPiece constructor throws exception
    */
-  boolean canKill(ChessPiece piece) throws IllegalArgumentException;
+  boolean canKill(ChessPiece piece);
 
 }

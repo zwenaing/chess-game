@@ -11,7 +11,7 @@ public class Rook extends AbstractChessPiece {
    * @param color the color of this piece
    * @throws IllegalArgumentException if the given row and column number are out of range
    */
-  public Rook(int row, int column, Color color) {
+  public Rook(int row, int column, Color color) throws IllegalArgumentException {
     super(row, column, color);
   }
 

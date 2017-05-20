@@ -3,9 +3,6 @@
  */
 public abstract class AbstractChessPiece implements ChessPiece {
 
-  protected final int MAX = 7; // the maximum row and column number
-  protected final int MIN = 0; // the minimum row and column number
-
   protected int row;
   protected int column;
   protected Color color;
@@ -54,18 +51,21 @@ public abstract class AbstractChessPiece implements ChessPiece {
   }
 
   /**
-   * Check the given row and column number is within acceptable range.
-   * Otherwise, throws an exception.
+   * Check the given row and column number are within acceptable range.
+   * Otherwise, throws an IllegalArgumentException exception.
    *
    * @param row the row number
    * @param column the column number
    * @throws IllegalArgumentException if the given row and column number are out of range
    */
   protected void checkRowCol(int row, int column) throws IllegalArgumentException {
-    if (row < MIN || row > MAX) {
+    final int max = 7; // the maximum row and column number
+    final int min = 0; // the minimum row and column number
+
+    if (row < min || row > max) {
       throw new IllegalArgumentException("Row number must be between 0 and 7");
     }
-    if (column < MIN || column > MAX) {
+    if (column < min || column > max) {
       throw new IllegalArgumentException("Column number must be between 0 and 7");
     }
   }

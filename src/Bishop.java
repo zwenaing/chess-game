@@ -9,8 +9,9 @@ public class Bishop extends AbstractChessPiece {
    * @param row the row number
    * @param column the column number
    * @param color the color of this piece
+   * @throws IllegalArgumentException if the given row and column number are out of range
    */
-  public Bishop(int row, int column, Color color) {
+  public Bishop(int row, int column, Color color) throws IllegalArgumentException {
     super(row, column, color);
   }
 

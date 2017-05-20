@@ -9,8 +9,9 @@ public class Knight extends AbstractChessPiece {
    * @param row the row number
    * @param column the column number
    * @param color the color of this piece
+   * @throws IllegalArgumentException if the given row and column number are out of range
    */
-  public Knight(int row, int column, Color color) {
+  public Knight(int row, int column, Color color) throws IllegalArgumentException {
     super(row, column, color);
   }
 
@@ -25,7 +26,6 @@ public class Knight extends AbstractChessPiece {
    */
   public boolean canMove(int row, int col) throws IllegalArgumentException {
     this.checkRowCol(row, col);
-
     return (((Math.abs(this.row - row)) == 2) && ((Math.abs(this.column - col)) == 1))
         || (((Math.abs(this.row - row)) == 1) && ((Math.abs(this.column - col)) == 2));
   }

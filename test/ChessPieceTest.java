@@ -58,6 +58,8 @@ public class ChessPieceTest {
     assertEquals("Knight: [Row: 7, Column: 7, Color: white]", k2.toString());
     assertEquals("Queen: [Row: 5, Column: 6, Color: white]", q1.toString());
     assertEquals("Queen: [Row: 6, Column: 4, Color: black]", q2.toString());
+    assertEquals("Pawn: [Row: 0, Column: 0, Color: white]", p1.toString());
+    assertEquals("Rook: [Row: 3, Column: 4, Color: black]", r3.toString());
   }
 
   // Test cases to check whether the constructors throw exceptions properly
@@ -128,9 +130,53 @@ public class ChessPieceTest {
     new Queen(5, 10, Color.BLACK);
   }
 
+  // Illegal row number of Pawn
+  @Test(expected = IllegalArgumentException.class)
+  public void testConstructor13() {
+    new Pawn(-1, 3, Color.WHITE);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testConstructor14() {
+    new Pawn(8, 3, Color.WHITE);
+  }
+
+  // Illegal column number of Pawn
+  @Test(expected = IllegalArgumentException.class)
+  public void testConstructor15() {
+    new Pawn(3, -1, Color.BLACK);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testConstructor16() {
+    new Pawn(5, 10, Color.BLACK);
+  }
+
+  // Illegal row number of Rook
+  @Test(expected = IllegalArgumentException.class)
+  public void testConstructor17() {
+    new Rook(-1, 3, Color.WHITE);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testConstructor18() {
+    new Rook(8, 3, Color.WHITE);
+  }
+
+  // Illegal column number of Rook
+  @Test(expected = IllegalArgumentException.class)
+  public void testConstructor19() {
+    new Rook(3, -1, Color.BLACK);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testConstructor20() {
+    new Rook(5, 10, Color.BLACK);
+  }
+
   // Test cases to check whether the getRow method works properly
   @Test
-  public void getRow() {
+  public void testGetRow() {
     assertEquals(1, b1.getRow());
     assertEquals(2, b2.getRow());
     assertEquals(4, b3.getRow());
@@ -162,6 +208,8 @@ public class ChessPieceTest {
     assertEquals(Color.BLACK, b1.getColor());
     assertEquals(Color.BLACK, k1.getColor());
     assertEquals(Color.WHITE, q1.getColor());
+    assertEquals(Color.WHITE, p1.getColor());
+    assertEquals(Color.BLACK, r1.getColor());
   }
 
   // Test cases to check whether the canMove method for Bishop works properly
@@ -272,7 +320,7 @@ public class ChessPieceTest {
     assertFalse(k2.canMove(3, 3));
     assertFalse(k3.canMove(4, 3));
     assertFalse(k3.canMove(1, 6));
-    // Knights can move to the same position
+    // Knights can't move to the same position
     assertFalse(k2.canMove(7, 7));
     assertFalse(k3.canMove(3, 4));
   }
@@ -302,14 +350,14 @@ public class ChessPieceTest {
   // Test cases to check whether the canKill method for Knight works properly
   @Test
   public void testKnightCanKill() {
-    // Can kill ChessPieces on the straight lines
+    // Can kill ChessPieces
     assertTrue(k1.canKill(new Bishop(1, 2, Color.WHITE)));
     assertTrue(k1.canKill(new Queen(2, 1, Color.WHITE)));
     assertTrue(k3.canKill(new Knight(4, 2, Color.WHITE)));
     assertTrue(k3.canKill(new Knight(1, 5, Color.WHITE)));
     assertTrue(k2.canKill(new Bishop(6, 5, Color.BLACK)));
     assertTrue(k2.canKill(new Queen(5, 6, Color.BLACK)));
-    // Can't kill ChessPieces outside the straight lines
+    // Can't kill ChessPieces
     assertFalse(k1.canKill(new Queen(3, 3, Color.WHITE)));
     assertFalse(k3.canKill(new Bishop(4, 3, Color.BLACK)));
     assertFalse(k2.canKill(new Knight(6, 6, Color.BLACK)));
@@ -451,8 +499,10 @@ public class ChessPieceTest {
     assertFalse(p3.canMove(1, 2));
     assertFalse(p3.canMove(3, 7));
     assertFalse(p3.canMove(5, 4));
-
+    // Pawn can't move at the same location
     assertFalse(p3.canMove(3, 4));
+    assertFalse(p1.canMove(0, 0));
+    assertFalse(p2.canMove(7, 7));
   }
 
   // Test cases to check whether the canMove method for Pawn throws exceptions for
@@ -490,7 +540,10 @@ public class ChessPieceTest {
     assertFalse(p3.canKill(new Knight(4, 5, Color.WHITE)));
     assertFalse(p2.canKill(new Queen(0, 2, Color.BLACK)));
     assertFalse(p3.canKill(new Queen(4, 3, Color.WHITE)));
+    // Pawn can't kill any ChessPiece at the same location
     assertFalse(p1.canKill(new Bishop(0, 0, Color.WHITE)));
+    assertFalse(p2.canKill(new Pawn(7, 7, Color.BLACK)));
+    assertFalse(p3.canKill(new Queen(3, 4, Color.WHITE)));
   }
 
   // Test cases to check whether the canKill method for Pawn throws exceptions for
@@ -538,7 +591,10 @@ public class ChessPieceTest {
     assertFalse(r3.canMove(1, 2));
     assertFalse(r3.canMove(5, 3));
 
+    // Rook can move to the same position
     assertTrue(r1.canMove(0, 0));
+    assertTrue(r2.canMove(7, 7));
+    assertTrue(r3.canMove(3, 4));
   }
 
   // Test cases to check whether the canMove method for Rook throws exceptions for
@@ -576,8 +632,10 @@ public class ChessPieceTest {
     // Rook can't kill any ChessPiece outside diagonal or same color
     assertFalse(r2.canKill(new Bishop(0, 7, Color.WHITE)));
     assertFalse(r2.canKill(new Queen(2, 2, Color.BLACK)));
-
+    // Rook can kill a ChessPiece at the same position
     assertTrue(r1.canKill(new Bishop(0, 0, Color.WHITE)));
+    assertTrue(r2.canKill(new Rook(7, 7, Color.BLACK)));
+    assertTrue(r3.canKill(new Queen(3, 4, Color.WHITE)));
   }
 
   // Test cases to check whether the canKill method for Pawn throws exceptions for

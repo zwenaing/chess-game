@@ -11,7 +11,7 @@ public class Pawn extends AbstractChessPiece {
    * @param color the color of this piece
    * @throws IllegalArgumentException if the given row and column number are out of range
    */
-  public Pawn(int row, int column, Color color) {
+  public Pawn(int row, int column, Color color) throws IllegalArgumentException {
     super(row, column, color);
   }
 
